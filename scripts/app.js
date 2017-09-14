@@ -1,5 +1,39 @@
 
-var Yike = angular.module('Yike', ['ngRoute', 'Controllers']);
+var Yike = angular.module('Yike', ['ngRoute', 'Controllers', 'Directives']);
+
+Yike.config(['$routeProvider', function ($routeProvider) {
+
+	$routeProvider.when('/today', {
+		templateUrl: './views/today.html',
+		controller: 'TodayController'
+	})
+	.when('/older', {
+		templateUrl: './views/older.html',
+		controller: 'OlderController'
+	})
+		.when('/author',{
+    templateUrl: './views/author.html',
+    controller: 'AuthorController'
+
+  })
+    .when('/category',{
+      templateUrl: './views/category.html',
+      controller: 'CategoryController'
+
+    })
+    .when('/favourite',{
+      templateUrl: './views/favourite.html',
+      controller: 'FavouriteController'
+    })
+    .when('/settings',{
+      templateUrl: './views/settings.html',
+      controller: 'SettingsController'
+    })
+	.otherwise({
+		redirectTo: '/today'
+	});
+
+}]);
 
 Yike.run(['$rootScope', function ($rootScope) {
 	// 设置类名初始值
@@ -22,7 +56,7 @@ Yike.run(['$rootScope', function ($rootScope) {
 				navs[i].style.transitionDuration = (i + 1) * 0.15 + 's';
 			}
 		} else {
-			console.log('关闭');
+			// console.log('关闭');
 			// 6 
 			// 6 - 1
 			var len = navs.length - 1;
